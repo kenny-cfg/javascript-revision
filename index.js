@@ -3,22 +3,23 @@ const addButton = document.getElementById('addButton');
 const removeButton = document.getElementById('removeButton');
 const division = document.getElementById('division');
 
+function addMouseFloatHandlersOnElement(element) {
+  element.addEventListener('mouseover', function () {
+    element.style.backgroundColor = 'lightgrey';
+    element.style.fontWeight = 'bold';
+    element.style.transition = '.5s'
+  });
+
+  element.addEventListener('mouseout', function () {
+    element.style.backgroundColor = '';
+    element.style.fontWeight = '';
+  });
+}
+
 function createParagraphElement(text) {
   const paragraphElement = document.createElement('p');
   paragraphElement.textContent = text;
-
-  paragraphElement.addEventListener('mouseover', function () {
-    paragraphElement.style.backgroundColor = 'lightgrey';
-    paragraphElement.style.fontWeight = 'bold';
-    paragraphElement.style.transition = '.5s'
-
-  });
-
-  paragraphElement.addEventListener('mouseout', function () {
-    paragraphElement.style.backgroundColor = '';
-    paragraphElement.style.fontWeight = '';
-  });
-
+  addMouseFloatHandlersOnElement(paragraphElement);
   return paragraphElement
 }
 
