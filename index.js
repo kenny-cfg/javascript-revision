@@ -3,8 +3,7 @@ const addButton = document.getElementById('addButton');
 const removeButton = document.getElementById('removeButton');
 const division = document.getElementById('division');
 
-
-addButton.addEventListener('click', function () {
+function onClickAddButtonHandler() {
   const text = userInput.value;
 
   // Check if the input is not empty
@@ -27,7 +26,9 @@ addButton.addEventListener('click', function () {
     division.appendChild(divItem);
     userInput.value = '';
   }
-});
+}
+
+addButton.addEventListener('click', onClickAddButtonHandler);
 
 removeButton.addEventListener('click', function () {
   const divItems = division.getElementsByTagName('p');
