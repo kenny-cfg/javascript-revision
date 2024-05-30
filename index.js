@@ -1,38 +1,47 @@
-const userInput = document.getElementById('userInput');
-const addButton = document.getElementById('addButton');
-const removeButton = document.getElementById('removeButton');
-const division = document.getElementById('division');
+const ingredients = [
+  "Basil",
+  "Cumin",
+  "Coriander",
+  "Oregano",
+  "Thyme",
+  "Rosemary",
+  "Turmeric",
+  "Paprika",
+  "Cinnamon",
+  "Saffron",
+  "Ginger",
+  "Cardamom",
+  "Fenugreek",
+  "Cloves",
+  "Bay Leaves"
+];
 
+function generateRecipe() {
+  const recipeList = document.getElementById("recipe-list");
+  recipeList.innerHTML = "";
 
-addButton.addEventListener('click', function () {
-  const text = userInput.value;
+  // Get random ingredients and protein
+  const randomIngredients = getRandomIngredients(3);
 
-  // Check if the input is not empty
-  if (text) {
-    const divItem = document.createElement('p');
-    divItem.textContent = text;
-
-    divItem.addEventListener('mouseover', function () {
-      divItem.style.backgroundColor = 'lightgrey';
-      divItem.style.fontWeight = 'bold';
-      divItem.style.transition = '.5s'
-
-    });
-
-    divItem.addEventListener('mouseout', function () {
-      divItem.style.backgroundColor = '';
-      divItem.style.fontWeight = '';
-    });
-
-    division.appendChild(divItem);
-    userInput.value = '';
+  // Loop through all ingredients and create list items
+  for (let i = 0; i < randomIngredients.length; i++) {
+    const ingredient = randomIngredients[i];
+    const listItem = document.createElement("li");
+    listItem.textContent = ingredient;
+    recipeList.appendChild(listItem);
   }
-});
 
-removeButton.addEventListener('click', function () {
-  const divItems = division.getElementsByTagName('p');
+  // Function to get random ingredients
+  function getRandomIngredients(count) {
+    const randomIngredients = [];
+    const ingredientsCopy = ingredients.slice();
 
-  if (divItems.length > 0) {
-    division.removeChild(divItems[divItems.length - 1]);
+    // Pick random ingredients from the array
+    while (randomIngredients.length < count) {
+      const randomIndex = Math.floor(Math.random() * ingredientsCopy.length);
+      const pickedIngredient = ingredientsCopy.splice(randomIndex, 1)[0];
+      randomIngredients.push(pickedIngredient);
+    }
+    return randomIngredients;
   }
-});
+}
