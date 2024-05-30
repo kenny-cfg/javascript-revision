@@ -1,3 +1,6 @@
 const allParagraphs = document.getElementsByTagName('p')
 
-console.log(allParagraphs)
+for (let i = 0; i < allParagraphs.length; i++) {
+  const paragraph = allParagraphs[i]
+  paragraph.innerText = `This is paragraph ${i}`
+}
